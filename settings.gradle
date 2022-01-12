@@ -1,2 +1,5 @@
 rootProject.name = 'ProjetGradle'
+include 'Model'
+include 'view'
+include 'controller'
 

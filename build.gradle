@@ -12,8 +12,34 @@ repositories {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    implementation project(':controller')
+    implementation project(':view')
+    implementation project(':Model')
 }
 
 test {
     useJUnitPlatform()
 }
+
+group = 'ProjetGradle'
+allprojects{
+    version='0.0.1'
+}
+task sourcesJar(type: Jar, dependsOn: classes) {
+    archiveClassifier.set("sources")
+    from sourceSets.main.allSource
+}
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    archiveClassifier.set("javadoc")
+    from javadoc.destinationDir
+}
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+/*jar {
+ manifest {
+attributes('Implementation-Title': project.name, 'Implementation-Version':
+project.version,
+}
+}*/
